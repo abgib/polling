@@ -15,7 +15,11 @@ class Response < ActiveRecord::Base
     primary_key: :id
   )
 
-  has_one( :question, through: :answer_choice, source: :question )
+  has_one(
+    :question,
+    through: :answer_choice,
+    source: :question
+  )
 
 
 end
