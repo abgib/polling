@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+5.times do |i|
+
+  u = User.create!(user_name: "James#{i}")
+
+  p = Poll.create!(author_id: u.id, title: "Poll#{i}")
+
+end
