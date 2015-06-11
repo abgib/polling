@@ -17,7 +17,25 @@ end
 Poll.all.each do |poll|
 
   q1 = Question.create!(text: "What's your favorite color?", poll_id: poll.id)
-  q2 = Question.create!(text: "What's your favorite snack?", poll_id: poll.id)
-  q3 = Question.create!(text: "How tall are you?", poll_id: poll.id)
+  colors = ["red", "green", "blue"]
 
+  colors.each do |color|
+    a = AnswerChoice.create!(text: color, question_id: q1.id)
+  end
+
+
+  q2 = Question.create!(text: "What's your favorite snack?", poll_id: poll.id)
+  snacks = ["candy", "jerky", "kale"]
+
+  snacks.each do |snack|
+    a = AnswerChoice.create!(text: snack, question_id: q2.id)
+  end
+
+
+  q3 = Question.create!(text: "How tall are you?", poll_id: poll.id)
+  heights = ["tall", "short"]
+
+  heights.each do |height|
+    a = AnswerChoice.create!(text: height, question_id: q3.id)
+  end
 end
