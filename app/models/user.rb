@@ -8,4 +8,11 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :responses,
+    class_name: 'Response',
+    foreign_key: :responder_id,
+    primary_key: :id
+  )
+
 end

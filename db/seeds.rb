@@ -39,3 +39,10 @@ Poll.all.each do |poll|
     a = AnswerChoice.create!(text: height, question_id: q3.id)
   end
 end
+
+Question.all.each do |question|
+  User.all.each do |user|
+    answer = question.answer_choices.sample
+    r = Response.create!(responder_id: user.id, answer_choice_id: answer.id)
+  end
+end
