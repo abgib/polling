@@ -13,3 +13,11 @@
   p = Poll.create!(author_id: u.id, title: "Poll#{i}")
 
 end
+
+Poll.all.each do |poll|
+
+  q1 = Question.create!(text: "What's your favorite color?", poll_id: poll.id)
+  q2 = Question.create!(text: "What's your favorite snack?", poll_id: poll.id)
+  q3 = Question.create!(text: "How tall are you?", poll_id: poll.id)
+
+end
