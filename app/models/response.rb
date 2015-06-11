@@ -1,6 +1,7 @@
 class Response < ActiveRecord::Base
   validates :responder_id, :answer_choice_id, presence: true
-  validate :respondent_has_not_already_answered_question
+  validate :respondent_has_not_already_answered_question,
+    :respondent_is_not_author
 
 
   belongs_to(
@@ -29,10 +30,20 @@ class Response < ActiveRecord::Base
     SQL
   end
 
+  def author_id
+    question.poll.author.id
+  end
+
   private
     def respondent_has_not_already_answered_question
       if sibling_responses.any? { |response| response.responder_id == self.responder_id }
         errors[:already_answered] << "by user"
+      end
+    end
+
+    def respondent_is_not_author
+      if author_id == self.responder_id
+        errors[:author] << "cannot answer own questions"
       end
     end
 end

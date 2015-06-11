@@ -42,7 +42,9 @@ end
 
 Question.all.each do |question|
   User.all.each do |user|
-    answer = question.answer_choices.sample
-    r = Response.create!(responder_id: user.id, answer_choice_id: answer.id)
+    unless user.id == question.poll.author.id
+      answer = question.answer_choices.sample
+      r = Response.create!(responder_id: user.id, answer_choice_id: answer.id)
+    end
   end
 end
